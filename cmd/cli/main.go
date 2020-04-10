@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/outillage/oto-tools/internal/generaterunner"
+	"github.com/outillage/oto-tools/internal/npm"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +21,26 @@ func main() {
 		SilenceUsage:  true,
 		SilenceErrors: true,
 	}
+
+	var generateCmd = &cobra.Command{
+		Use:   "generate",
+		Short: "Generates package json",
+		Long:  ``,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			runner := generaterunner.Runner{}
+
+			path := cmd.Flag("path").Value.String()
+			packageName := cmd.Flag("package-name").Value.String()
+			packageVersion := cmd.Flag("package-version").Value.String()
+
+			return runner.Run(path, npm.Package{Name: packageName, Version: packageVersion})
+		},
+	}
+	generateCmd.PersistentFlags().String("path", "./js", "set path for output of package.json")
+	generateCmd.PersistentFlags().String("package-name", "", "set name of project in package.json")
+	generateCmd.PersistentFlags().String("package-version", "", "set version of project in package.json")
+
+	rootCmd.AddCommand(generateCmd)
 
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
