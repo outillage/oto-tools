@@ -17,3 +17,7 @@ func GoModTidy() error {
 	}
 	return sh.RunV("git", "diff-index", "--quiet", "HEAD")
 }
+
+func Install() error {
+	return sh.RunV("go", "install", "github.com/pacedotdev/oto")
+}
