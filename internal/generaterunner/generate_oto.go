@@ -27,7 +27,7 @@ func (runner *Runner) generateOtoFiles(path string, options OtoOptions) error {
 		return errors.New("missing output path")
 	}
 
-	runOptions = append(runOptions, "-out", path+"/"+npm.NPMPackageName)
+	runOptions = append(runOptions, "-out", path+"/"+npm.NPMPackageMain)
 
 	if options.DefinitionPath == "" {
 		return errors.New("missing definition file path")
