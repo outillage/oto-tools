@@ -16,7 +16,7 @@ func TestGeneratePackage(t *testing.T) {
 
 	assert.Error(t, versionError)
 
-	generated, err := GeneratePackageInfo(Package{"test-package", "0.0.1"})
+	generated, err := GeneratePackageInfo(Package{Name: "test-package", Version: "0.0.1"})
 
 	assert.NoError(t, err)
 

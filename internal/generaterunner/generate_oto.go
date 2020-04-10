@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/magefile/mage/sh"
+	"github.com/outillage/oto-tools/internal/npm"
 )
 
 type OtoOptions struct {
@@ -26,7 +27,7 @@ func (runner *Runner) generateOtoFiles(path string, options OtoOptions) error {
 		return errors.New("missing output path")
 	}
 
-	runOptions = append(runOptions, "-out", path+"/client.js")
+	runOptions = append(runOptions, "-out", path+"/"+npm.NPMPackageName)
 
 	if options.DefinitionPath == "" {
 		return errors.New("missing definition file path")
