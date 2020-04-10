@@ -10,7 +10,7 @@ import (
 func TestRun(t *testing.T) {
 	runner := Runner{}
 
-	pathErr := runner.Run("", npm.Package{})
+	pathErr := runner.Run("", npm.Package{}, OtoOptions{})
 
 	assert.Error(t, pathErr)
 }

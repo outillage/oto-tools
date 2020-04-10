@@ -32,13 +32,21 @@ func main() {
 			path := cmd.Flag("path").Value.String()
 			packageName := cmd.Flag("package-name").Value.String()
 			packageVersion := cmd.Flag("package-version").Value.String()
+			otoTemplate := cmd.Flag("oto-template").Value.String()
+			otoDefinitions := cmd.Flag("oto-definitions").Value.String()
 
-			return runner.Run(path, npm.Package{Name: packageName, Version: packageVersion})
+			return runner.Run(
+				path,
+				npm.Package{Name: packageName, Version: packageVersion},
+				generaterunner.OtoOptions{TemplatePath: otoTemplate, DefinitionPath: otoDefinitions},
+			)
 		},
 	}
 	generateCmd.PersistentFlags().String("path", "./js", "set path for output of package.json")
 	generateCmd.PersistentFlags().String("package-name", "", "set name of project in package.json")
 	generateCmd.PersistentFlags().String("package-version", "", "set version of project in package.json")
+	generateCmd.PersistentFlags().String("oto-template", "", "path to oto template")
+	generateCmd.PersistentFlags().String("oto-definitions", "", "path to oto definition")
 
 	rootCmd.AddCommand(generateCmd)
 
