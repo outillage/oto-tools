@@ -6,6 +6,7 @@ import (
 
 	"github.com/outillage/oto-tools/internal/generaterunner"
 	"github.com/outillage/oto-tools/internal/npm"
+	"github.com/outillage/oto-tools/internal/versioning"
 	"github.com/spf13/cobra"
 )
 
@@ -34,6 +35,10 @@ func main() {
 			packageVersion := cmd.Flag("package-version").Value.String()
 			otoTemplate := cmd.Flag("oto-template").Value.String()
 			otoDefinitions := cmd.Flag("oto-definitions").Value.String()
+
+			if packageVersion == "" {
+				packageVersion = versioning.FindVersion()
+			}
 
 			return runner.Run(
 				path,
