@@ -1,6 +1,6 @@
 package npm
 
 const (
-	// NPMPackageName is an arbitrary output name for client
-	NPMPackageName = "client.js"
+	// NPMPackageMain is an arbitrary output name for client
+	NPMPackageMain = "client.js"
 )

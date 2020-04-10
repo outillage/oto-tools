@@ -25,7 +25,7 @@ func GeneratePackageInfo(npmPackage Package) ([]byte, error) {
 	}
 
 	if npmPackage.Main == "" {
-		npmPackage.Main = NPMPackageName
+		npmPackage.Main = NPMPackageMain
 	}
 
 	marshalled, err := json.Marshal(npmPackage)
