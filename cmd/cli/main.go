@@ -6,6 +6,7 @@ import (
 
 	"github.com/outillage/oto-tools/internal/generaterunner"
 	"github.com/outillage/oto-tools/internal/npm"
+	"github.com/outillage/oto-tools/internal/publishrunner"
 	"github.com/outillage/oto-tools/internal/versioning"
 	"github.com/spf13/cobra"
 )
@@ -54,6 +55,30 @@ func main() {
 	generateCmd.PersistentFlags().String("oto-definitions", "", "path to oto definition")
 
 	rootCmd.AddCommand(generateCmd)
+
+	var NPMPublishCmd = &cobra.Command{
+		Use:   "publish-npm",
+		Short: "Publishes provided package to NPM",
+		Long:  ``,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			runner := publishrunner.Runner{}
+
+			path := cmd.Flag("path").Value.String()
+			token := cmd.Flag("token").Value.String()
+
+			return runner.Run(
+				path,
+				npm.PublishOptions{
+					Token: token,
+				},
+			)
+		},
+	}
+
+	NPMPublishCmd.PersistentFlags().String("path", "./js", "set path for js library to publish")
+	NPMPublishCmd.PersistentFlags().String("token", "", "token for authenticating against NPM")
+
+	rootCmd.AddCommand(NPMPublishCmd)
 
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
