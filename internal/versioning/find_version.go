@@ -1,6 +1,7 @@
 package versioning
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 
@@ -17,12 +18,25 @@ func FindVersion() string {
 
 	currentTag, err := gitRepo.CurrentTag()
 
-	if err == git.ErrCommitNotOnTag {
-		return "next"
+	if err == nil {
+		return currentTag.Name
 	}
+
+	if err != nil && err != git.ErrCommitNotOnTag {
+		return ""
+	}
+
+	currentCommit, err := gitRepo.CurrentCommit()
+
 	if err != nil {
 		return ""
 	}
 
-	return currentTag.Name
+	previousTag, err := gitRepo.PreviousTag(currentCommit.Hash)
+
+	if err != nil {
+		return ""
+	}
+
+	return fmt.Sprintf("%s-%s", previousTag.Name, currentCommit.Hash)
 }
