@@ -65,11 +65,15 @@ func main() {
 
 			path := cmd.Flag("path").Value.String()
 			token := cmd.Flag("token").Value.String()
+			registry := cmd.Flag("registry").Value.String()
+			owner := cmd.Flag("owner").Value.String()
 
 			return runner.Run(
 				path,
 				npm.PublishOptions{
-					Token: token,
+					Token:       token,
+					RegistryURL: registry,
+					Owner:       owner,
 				},
 			)
 		},
@@ -77,6 +81,8 @@ func main() {
 
 	NPMPublishCmd.PersistentFlags().String("path", "./js", "set path for js library to publish")
 	NPMPublishCmd.PersistentFlags().String("token", "", "token for authenticating against NPM")
+	NPMPublishCmd.PersistentFlags().String("registry", "", "NPM compatible registry to publish to, accepts npm, github, or url")
+	NPMPublishCmd.PersistentFlags().String("owner", "", "for Github owner is required to build the registry url")
 
 	rootCmd.AddCommand(NPMPublishCmd)
 

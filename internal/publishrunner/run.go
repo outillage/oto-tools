@@ -6,14 +6,23 @@ import (
 	"github.com/outillage/oto-tools/internal/npm"
 )
 
-const (
-	// NPMRegistry is the default registry url for most JS projects.
-	NPMRegistry = "//registry.npmjs.org/"
-)
-
 // Run executes the full publish command. It will create a .npmrc file, publish to NPM and then delete the .npmrc file.
 func (runner *Runner) Run(path string, options npm.PublishOptions) error {
-	err := createConfigFile(path, NPMRegistry, options.Token)
+	var registry string
+
+	if options.RegistryURL == "" {
+		registry = npm.NPMRegistry
+	}
+
+	if options.RegistryURL == "npm" {
+		registry = npm.NPMRegistry
+	}
+
+	if options.RegistryURL == "github" {
+		registry = npm.GHRegistry
+	}
+
+	err := createConfigFile(path, registry, options.Token, options.Owner)
 
 	if err != nil {
 		return err

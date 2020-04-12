@@ -35,7 +35,7 @@ func FindVersion() string {
 	previousTag, err := gitRepo.PreviousTag(currentCommit.Hash)
 
 	if err != nil {
-		return ""
+		return fmt.Sprintf("0.0.0-%s", currentCommit.Hash)
 	}
 
 	return fmt.Sprintf("%s-%s", cleanVersion(previousTag.Name), currentCommit.Hash)
