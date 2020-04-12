@@ -19,7 +19,7 @@ func FindVersion() string {
 	currentTag, err := gitRepo.CurrentTag()
 
 	if err == nil {
-		return currentTag.Name
+		return cleanVersion(currentTag.Name)
 	}
 
 	if err != nil && err != git.ErrCommitNotOnTag {
@@ -38,5 +38,5 @@ func FindVersion() string {
 		return ""
 	}
 
-	return fmt.Sprintf("%s-%s", previousTag.Name, currentCommit.Hash)
+	return fmt.Sprintf("%s-%s", cleanVersion(previousTag.Name), currentCommit.Hash)
 }
