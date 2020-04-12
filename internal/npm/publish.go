@@ -7,9 +7,12 @@ import (
 )
 
 type PublishOptions struct {
-	Token   string
-	DryRun  bool
-	Private bool
+	Token       string
+	DryRun      bool
+	Private     bool
+	RegistryURL string
+	// Owner is used only for Github
+	Owner string
 }
 
 func Publish(path string, options PublishOptions) error {
