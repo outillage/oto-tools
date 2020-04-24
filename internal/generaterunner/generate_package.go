@@ -4,7 +4,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/outillage/oto-tools/internal/npm"
+	"github.com/aevea/oto-tools/internal/npm"
 )
 
 // PackageJSON creates and saves the package.json file for uploading to npm

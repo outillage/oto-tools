@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/outillage/git/v2"
+	"github.com/aevea/git/v2"
 )
 
 // FindVersion tries to find the version from Git. Non-tagged commits get version next.

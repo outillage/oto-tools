@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/outillage/oto-tools/internal/generaterunner"
-	"github.com/outillage/oto-tools/internal/npm"
-	"github.com/outillage/oto-tools/internal/publishrunner"
-	"github.com/outillage/oto-tools/internal/versioning"
+	"github.com/aevea/oto-tools/internal/generaterunner"
+	"github.com/aevea/oto-tools/internal/npm"
+	"github.com/aevea/oto-tools/internal/publishrunner"
+	"github.com/aevea/oto-tools/internal/versioning"
 	"github.com/spf13/cobra"
 )
 

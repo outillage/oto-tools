@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"github.com/outillage/oto-tools/internal/npm"
+	"github.com/aevea/oto-tools/internal/npm"
 	"github.com/stretchr/testify/assert"
 )
 

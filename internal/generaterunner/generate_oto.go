@@ -4,8 +4,8 @@ import (
 	"errors"
 	"os"
 
+	"github.com/aevea/oto-tools/internal/npm"
 	"github.com/magefile/mage/sh"
-	"github.com/outillage/oto-tools/internal/npm"
 )
 
 type OtoOptions struct {
