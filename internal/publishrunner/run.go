@@ -3,7 +3,7 @@ package publishrunner
 import (
 	"log"
 
-	"github.com/outillage/oto-tools/internal/npm"
+	"github.com/aevea/oto-tools/internal/npm"
 )
 
 // Run executes the full publish command. It will create a .npmrc file, publish to NPM and then delete the .npmrc file.

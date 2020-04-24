@@ -4,7 +4,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/outillage/oto-tools/internal/npm"
+	"github.com/aevea/oto-tools/internal/npm"
 )
 
 func (runner *Runner) Run(path string, packageOptions npm.Package, otoOptions OtoOptions) error {
