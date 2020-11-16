@@ -11,7 +11,7 @@ jobs:
     name: Generate Release Notes
     steps:
       - name: Check out code into the Go module directory
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: Release Notary
         uses: docker://outillage/release-notary@sha256:a7f3c24e5b24caa8d25e259837add805ba9868f913bb8c678cd787a2ed5ebc9a
         env:
@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: Set up Go
         uses: actions/setup-go@v1
         with:
